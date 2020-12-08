@@ -9,11 +9,10 @@ function createGetVolume(funcName) {
 }
 
 function createSetVolume(funcName) {
-	return function(volume, showToast, success, error) {
-		showToast = showToast || false;
+	return function(volume, success, error) {
 		success = success || function(){};
 		error = error || function(){}
-		exec(success, error, 'AndroidVolume', funcName, [volume, showToast]);
+		exec(success, error, 'AndroidVolume', funcName, [volume]);
 	}
 }
 
