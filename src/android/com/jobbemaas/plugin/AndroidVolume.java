@@ -20,28 +20,28 @@ public class AndroidVolume extends CordovaPlugin {
 		CallbackContext callbackContext
 	) throws JSONException {
 		if ("setAlarm".equals(action)) {
-			setAlarmVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setAlarmVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setAll".equals(action)) {
-			setAllVolumes(args.getInt(0), args.getBoolean(1), callbackContext);
+			setAllVolumes(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setDTMF".equals(action)) {
-			setDTMFVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setDTMFVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setMusic".equals(action)) {
-			setMusicVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setMusicVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setNotification".equals(action)) {
-			setNotificationVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setNotificationVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setRinger".equals(action)) {
-			setRingerVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setRingerVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setSystem".equals(action)) {
-			setSystemVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setSystemVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("setVoiceCall".equals(action)) {
-			setVoiceCallVolume(args.getInt(0), args.getBoolean(1), callbackContext);
+			setVoiceCallVolume(args.getInt(0), callbackContext);
 			return true;
 		} else if ("getDTMF".equals(action)) {
 			getDTMFVolume(callbackContext);
