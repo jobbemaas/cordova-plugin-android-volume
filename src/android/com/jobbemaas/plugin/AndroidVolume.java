@@ -7,7 +7,6 @@ import org.json.JSONObject;
 import org.json.JSONException;
 import android.content.Context;
 import android.media.AudioManager;
-import android.widget.Toast;
 import java.lang.SecurityException;
 
 public class AndroidVolume extends CordovaPlugin {
@@ -80,7 +79,6 @@ public class AndroidVolume extends CordovaPlugin {
 		final int streamType,
 		final String volumeType,
 		final int volume,
-		final boolean showToast,
 		CallbackContext callbackContext
 	) {
         final Context context = this.cordova.getActivity();
@@ -103,14 +101,6 @@ public class AndroidVolume extends CordovaPlugin {
 						_callbackContext.error(se.getMessage());
 					}
 					return;
-				}
-				if (showToast) {
-					String volumeLabel = (volumeType.length() > 0 ? volumeType + " " : "") +  "Volume: " + String.valueOf(volume);
-					Toast.makeText(
-						webView.getContext(),
-						volumeLabel,
-						Toast.LENGTH_LONG
-					).show();
 				}
 				if (_callbackContext != null) {
 					_callbackContext.success(volume);
@@ -140,16 +130,15 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setAllVolumes(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_ALARM, "", volume, false, null);
-		setVolume(AudioManager.STREAM_DTMF, "", volume, false, null);
-		setVolume(AudioManager.STREAM_MUSIC, "", volume, false, null);
-		setVolume(AudioManager.STREAM_NOTIFICATION, "", volume, false, null);
-		setVolume(AudioManager.STREAM_RING, "", volume, false, null);
-		setVolume(AudioManager.STREAM_SYSTEM, "", volume, false, null);
-		setVolume(AudioManager.STREAM_VOICE_CALL, "", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_ALARM, "", volume, null);
+		setVolume(AudioManager.STREAM_DTMF, "", volume, null);
+		setVolume(AudioManager.STREAM_MUSIC, "", volume, null);
+		setVolume(AudioManager.STREAM_RING, "", volume, null);
+		setVolume(AudioManager.STREAM_SYSTEM, "", volume, null);
+		setVolume(AudioManager.STREAM_VOICE_CALL, "", volume, null);
+		setVolume(AudioManager.STREAM_NOTIFICATION, "", volume, callbackContext);
 	}
 
 	public void getAlarmVolume(CallbackContext callbackContext) {
@@ -158,10 +147,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setAlarmVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_ALARM, "Alarm", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_ALARM, "Alarm", volume, callbackContext);
 	}
 
 	public void getDTMFVolume(CallbackContext callbackContext) {
@@ -170,10 +158,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setDTMFVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_DTMF, "DTMF", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_DTMF, "DTMF", volume, callbackContext);
 	}
 
 	public void getMusicVolume(CallbackContext callbackContext) {
@@ -182,10 +169,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setMusicVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_MUSIC, "Music", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_MUSIC, "Music", volume, callbackContext);
 	}
 
 	public void getNotificationVolume(CallbackContext callbackContext) {
@@ -194,10 +180,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setNotificationVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_NOTIFICATION, "Notification", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_NOTIFICATION, "Notification", volume, callbackContext);
 	}
 
 	public void getRingerVolume(CallbackContext callbackContext) {
@@ -206,10 +191,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setRingerVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_RING, "Ringer", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_RING, "Ringer", volume, callbackContext);
 	}
 
 	public void getSystemVolume(CallbackContext callbackContext) {
@@ -218,10 +202,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setSystemVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_SYSTEM, "System", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_SYSTEM, "System", volume, callbackContext);
 	}
 
 	public void getVoiceCallVolume(CallbackContext callbackContext) {
@@ -230,10 +213,9 @@ public class AndroidVolume extends CordovaPlugin {
 
 	public void setVoiceCallVolume(
 		int volume,
-		boolean showToast,
 		CallbackContext callbackContext
 	) {
-		setVolume(AudioManager.STREAM_VOICE_CALL, "Voice Call", volume, showToast, callbackContext);
+		setVolume(AudioManager.STREAM_VOICE_CALL, "Voice Call", volume, callbackContext);
 	}
 
 	private void registerVolumeObserver(CallbackContext callbackContext) {
