@@ -1,4 +1,4 @@
-package com.mcluck.plugin;
+package com.jobbemaas.plugin;
 
 import android.content.Context;
 import android.database.ContentObserver;
